@@ -17,9 +17,9 @@ case "${COMMAND}" in
     echo "Checking French voice model..."
     python3 -m piper.download_voices --data-dir "${DATA_DIR}" fr_FR-siwis-medium
     
-    # Lancer le serveur HTTP
-    echo "Starting Piper HTTP server..."
-    exec python3 -m piper.http_server --host 0.0.0.0 --port 5000 -m fr_FR-siwis-medium --data-dir "${DATA_DIR}" "$@"
+    # Lancer le serveur HTTP en production avec Gunicorn
+    echo "Starting Piper HTTP server with Gunicorn..."
+    exec gunicorn --bind 0.0.0.0:5000 --workers 2 --timeout 300 --access-logfile - "piper.http_server:app"
     ;;
   ""|help|-h|--help)
     echo "Usage: <command> [args...]"
