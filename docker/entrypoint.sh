@@ -13,6 +13,12 @@ case "${COMMAND}" in
     exec python3 -m piper.download_voices --data-dir "${DATA_DIR}" "$@"
     ;;
   server)
+    # Télécharger le modèle français s'il n'existe pas
+    echo "Checking French voice model..."
+    python3 -m piper.download_voices --data-dir "${DATA_DIR}" --voice fr_FR-siwis-medium
+    
+    # Lancer le serveur HTTP
+    echo "Starting Piper HTTP server..."
     exec python3 -m piper.http_server --host 0.0.0.0 --port 5000 -m fr_FR-siwis-medium --data-dir "${DATA_DIR}" "$@"
     ;;
   ""|help|-h|--help)
