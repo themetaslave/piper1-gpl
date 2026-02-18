@@ -27,7 +27,7 @@ RUN apt-get update && apt-get install -y \
 WORKDIR /app
 COPY --from=builder /app/dist/piper_tts-*linux*.whl ./dist/
 RUN pip3 install ./dist/piper_tts-*linux*.whl
-RUN pip3 install 'flask>=3,<4' flask-cors
+RUN pip3 install 'flask>=3,<4' flask-cors gunicorn
 
 COPY docker/entrypoint.sh /
 
