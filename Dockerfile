@@ -33,4 +33,5 @@ COPY docker/entrypoint.sh /
 
 EXPOSE 5000
 
+CMD ["server"]
 ENTRYPOINT ["/entrypoint.sh"]
