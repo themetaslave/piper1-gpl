@@ -15,7 +15,7 @@ case "${COMMAND}" in
   server)
     # Télécharger le modèle français s'il n'existe pas
     echo "Checking French voice model..."
-    python3 -m piper.download_voices --data-dir "${DATA_DIR}" --voice fr_FR-siwis-medium
+    python3 -m piper.download_voices --data-dir "${DATA_DIR}" fr_FR-siwis-medium
     
     # Lancer le serveur HTTP
     echo "Starting Piper HTTP server..."
